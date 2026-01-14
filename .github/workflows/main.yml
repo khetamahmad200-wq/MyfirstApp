@@ -1,17 +1,14 @@
-name: Build APK
-on: [push, pull_request]
+name: Build
+on: [push]
 jobs:
-  build:
+  it:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build with Buildozer
-        uses: ArtemGrubin/Buildozer-action@v1
+      - uses: ArtemGrubin/Buildozer-action@v1
         with:
-          buildozer_version: master
           command: buildozer -v android debug
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: package
+          name: my-app
           path: bin/*.apk
